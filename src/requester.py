@@ -26,7 +26,7 @@ def read_item(video_id: str) -> tuple[int, int]:
 
             total_time = int(str(minute_split[0])[0:-1]) * 60 + int(str(second_split[0])[0:-1])
 
-            print(f"{total_time} seconds")
+            #print(f"{total_time} seconds")
             title: str = posts["items"][0]["snippet"]["title"]
             description: str = posts["items"][0]["snippet"]["description"]
             title_and_desc = f"Title: {title}\nDescription: {description}"
@@ -53,5 +53,3 @@ def dear_ai_is_this_brainrot(api_key: str, video_transcript: str) -> int:
     if response.text == "informative": return 1
     if response.text == "entertainment": return 2
     return 0
-
-print(read_item("ZvC2jtmVAMs"))
