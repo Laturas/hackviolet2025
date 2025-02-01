@@ -16,15 +16,24 @@ document.addEventListener("click", (e) => {
 * Given the name of a beast, get the URL to the corresponding image.
 */
 function beastNameToURL(beastName) {
-switch (beastName) {
-case "Doodle":
-return browser.runtime.getURL("icons/temp-doodle.png");
-case "temp48":
-return browser.runtime.getURL("icons/temp-icon-48.png");
-case "temp96":  
-return browser.runtime.getURL("icons/temp-icon-96.png");
+  switch (beastName) {
+    case "idkplaceholder":
+      return browser.runtime.getURL("icons/placeholder.jpg");
+    case "idkcat":
+      return browser.runtime.getURL("icons/temp-icon-48.png");
+    case "temp96":  
+      return browser.runtime.getURL("icons/temp-icon-96.png");
+    default:
+      console.log(`Unknown beastName: ${beastName}`);
+      return browser.runtime.getURL("icons/placeholder.jpg");
+  }
 }
-}
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Set the image sources dynamically for the title and the pie chart
+  document.getElementById("title-image").src = browser.runtime.getURL("icons/youtube.png");
+  document.getElementById("pie-chart-image").src = browser.runtime.getURL("icons/placeholder.jpg");
+});
 
 /**
 * Insert the page-hiding CSS into the active tab,
@@ -46,11 +55,11 @@ beastURL: url,
 * send a "reset" message to the content script in the active tab.
 */
 function reset(tabs) {
-browser.tabs.removeCSS({ code: hidePage }).then(() => {
-browser.tabs.sendMessage(tabs[0].id, {
-command: "reset",
-});
-});
+  browser.tabs.removeCSS({ code: hidePage }).then(() => {
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "reset",
+    });
+  });
 }
 
 /**
@@ -68,17 +77,18 @@ if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
 // Ignore when click is not on a button within <div id="popup-content">.
 return;
 }
-if (e.target.type === "reset") {
-browser.tabs
-.query({ active: true, currentWindow: true })
-.then(reset)
-.catch(reportError);
-} else {
-browser.tabs
-.query({ active: true, currentWindow: true })
-.then(beastify)
-.catch(reportError);
-}
+  if (e.target.type === "reset") {
+    browser.tabs
+    .query({ active: true, currentWindow: true })
+    .then(reset)
+    .catch(reportError);
+  } 
+  else {
+    browser.tabs
+    .query({ active: true, currentWindow: true })
+    .then(beastify)
+    .catch(reportError);
+  }
 });
 }
 

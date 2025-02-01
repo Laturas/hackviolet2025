@@ -7,15 +7,52 @@
 
   <body>
     <div id="popup-content">
-      <button>Doodle</button>
-      <button>temp48</button>
-      <button>temp96</button>
-      <button type="reset">Reset</button>
+
+      <!-- Title Placeholder -->
+      <div id="title">
+        <img src="../icons/youtube.png" id="title-image"/>
+        <h1> Yakalytics </h1>
+      </div>
+
+      <!-- Time Watched Section -->
+      <div id="time-watched">
+        <p> <strong>Time Watched:</strong> <span id="time"></span> </p>
+      </div>
+
+      <!-- Most Watched Section -->
+      <div id="most-watched">
+        <p><strong>Most Watched:</strong></p>
+
+        <!-- Tags of Watched Content -->
+        <div id="tags">
+          <span class="tag">Entertainment</span>
+          <span class="tag">Education</span>
+        </div>
+
+      </div>
+
+      <!-- Pie Chart Section -->
+      <div id="pie-chart">
+        <p><strong>Watch Category Distribution:</strong></p>
+        <!-- Pie Chart Canvas (IMPLEMENT) -->
+        <canvas id="pie-chart-canvas" width="200" height="200"></canvas>
+      </div>
+
+      <!-- Buttons -->
+      <div id="buttons">
+        <button type="reset"> Reset </button>
+        <button> idkplaceholder </button>
+        <button> idkplaceholder </button>
+      </div>
     </div>
+
+    <!-- End -->
+    <script src="popup.js"></script>
+
     <div id="error-content" class="hidden">
       <p>Can't provide analytics for this web page.</p>
       <p>Make sure you are on youtube.com</p>
     </div>
-    <script src="popup.js"></script>
+
   </body>
 </html>
