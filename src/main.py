@@ -1,0 +1,29 @@
+import database
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.post("/")
+def add_item(request: dict):
+    db = database.DatabaseMD()
+    db.send(request)
+    return {"status": "ok"}
+
+@app.get("/")
+def get_items():
+    db = database.DatabaseMD()
+    return db.get()
