@@ -4,7 +4,8 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color 1s, color 1s;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s;
+  opacity: 1;
 }
 
 #popup-content {
@@ -79,13 +80,14 @@ button[type="reset"]:hover {
 .dark-mode {
   background-color: #222;
   color: #eee;
-  transition: background-color 1s, color 1s;
+  transition: background-color 1.2s ease .2s, color 1.2s ease .2s;
 }
 
 .dark-mode h1,
 .dark-mode p,
 .dark-mode .tag {
   color: #ddd;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s
 }
 
 .dark-mode button {
@@ -137,6 +139,7 @@ h1 {
   font-size: 1.6em;
   margin-bottom: 15px;
   color: #333;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s
 }
 
 /* Total Time Watched Section */
