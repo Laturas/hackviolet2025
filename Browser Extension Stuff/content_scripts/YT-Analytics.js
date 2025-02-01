@@ -14,6 +14,7 @@ console.log("===========================\nScript Loaded\n=======================
       return;
     }
     window.hasRun = true;
+
   
     /**
      * Listen for messages from the background script
