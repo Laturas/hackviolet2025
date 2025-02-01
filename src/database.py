@@ -1,9 +1,13 @@
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
 
 class DatabaseMD:
 
     def __init__(self):
-        self.uri = "mongodb+srv://trajarshi:vthacks@vthacks.td4ds.mongodb.net/?retryWrites=true&w=majority&appName=VTHacks"
+        load_dotenv()
+        mongo_key = os.getenv("MONGODB_KEY")
+        self.uri = mongo_key
         # Create a new client and connect to the server
         self.client = MongoClient(self.uri)
         self.db = self.client.HackViolet
