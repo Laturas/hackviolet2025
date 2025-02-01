@@ -19,11 +19,11 @@ app.add_middleware(
 
 @app.post("/")
 def add_item(request: dict):
-    db = DatabaseMD.DatabaseMD()
+    db = database.DatabaseMD()
     db.send(request)
     return {"status": "ok"}
 
 @app.get("/")
 def get_items():
-    db = DatabaseMD.DatabaseMD()
+    db = database.DatabaseMD()
     return db.get()
