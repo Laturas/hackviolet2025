@@ -1,4 +1,7 @@
 import google.generativeai as genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Instructions:
 # Run command: pip install google-generativeai
