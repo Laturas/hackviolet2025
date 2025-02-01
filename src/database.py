@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from pymongo import ReturnDocument
 from dotenv import load_dotenv
 import os
 
@@ -16,11 +17,9 @@ class DatabaseMD:
     # Update watchtime based on category
     def send(self, genre, time):
         if genre == 1:
-            time += int(self.col.find_one()["info"])
-            self.col.find_one_and_update({"info" : str(time)})
+            self.col.find_one_and_update({'_id' : "100"}, { "$inc" : {"info" : time}})
         if genre == 2:
-            time += int(self.col.find_one()["entertain"])
-            self.col.find_one_and_update({"entertain" : str(time)})
+            self.col.find_one_and_update({'_id' : "100"}, { '$inc' : {"entertain" : time}})
 
     # Return watchtime info
     def get(self):

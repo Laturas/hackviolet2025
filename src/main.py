@@ -29,5 +29,3 @@ def add_item(request: dict):
 def get_items():
     db = database.DatabaseMD()
     return db.get()
-
-add_item({"video_id": "ZvC2jtmVAMs"})
