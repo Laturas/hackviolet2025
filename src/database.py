@@ -12,8 +12,10 @@ class DatabaseMD:
     # Update watchtime based on category
     def send(self, genre, time):
         if genre == 1:
+            time += self.col.find_one()["info"]
             self.col.find_one_and_update({"info" : str(time)})
         if genre == 2:
+            time += self.col.find_one()["entertain"]
             self.col.find_one_and_update({"entertain" : str(time)})
 
     # Return watchtime info

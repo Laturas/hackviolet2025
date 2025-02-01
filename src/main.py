@@ -20,11 +20,8 @@ app.add_middleware(
 @app.post("/")
 def add_item(request: dict):
     db = database.DatabaseMD()
-    genre = requester.read_item(request["video_id"])
-    if genre == 0:
-        return {"status" : "ok"}
-    if genre == 1:
-        db.send(request)
+    result = requester.read_item(request["video_id"])
+    db.send(result[0], result[1])
     return {"status": "ok"}
 
 @app.get("/")
