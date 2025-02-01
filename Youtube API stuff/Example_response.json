@@ -1,0 +1,65 @@
+// URL: "https://content-youtube.googleapis.com/youtube/v3/videos?id={video_id}&part=id,contentDetails,snippet&key={api_key}"
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "QQgrQUK73tSElHwctlm8dZSTr8Y",
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "c0wcdx73pvh8XGyFyocZcgY0fbY",
+      "id": "B8VR5mQcgjI",
+      "snippet": {
+        "publishedAt": "2023-08-19T00:18:39Z",
+        "channelId": "UC3WvqU-hh5v-wqajkG1jHaA",
+        "title": "[HEAVY FLASH WARNING] OIIAOIIA Extended HIGH QUALITY",
+        "description": "A remaster of the original extended version. This time it was made using the original video source and not some 360p tiktok reupload that was screen recorded in 15 fps. this version is just overall better as it has better stitching which is done to make the extensions seamless\n\noh and the audio is higher quality",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/B8VR5mQcgjI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/B8VR5mQcgjI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/B8VR5mQcgjI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/B8VR5mQcgjI/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/B8VR5mQcgjI/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "snort",
+        "categoryId": "24",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "[HEAVY FLASH WARNING] OIIAOIIA Extended HIGH QUALITY",
+          "description": "A remaster of the original extended version. This time it was made using the original video source and not some 360p tiktok reupload that was screen recorded in 15 fps. this version is just overall better as it has better stitching which is done to make the extensions seamless\n\noh and the audio is higher quality"
+        }
+      },
+      "contentDetails": {
+        "duration": "PT3M31S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "contentRating": {},
+        "projection": "rectangular"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
+}
