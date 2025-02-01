@@ -17,8 +17,6 @@ def read_item(video_id: str) -> tuple[int, int]:
 
         if response.status_code == 200:
             posts = response.json()
-            #print(posts)
-            content_type = int(posts["items"][0]["snippet"]["categoryId"])
             dur_string = posts["items"][0]["contentDetails"]["duration"]
 
             minute_split = re.search("[0-9]*M", dur_string)
@@ -26,9 +24,9 @@ def read_item(video_id: str) -> tuple[int, int]:
 
             total_time = int(str(minute_split[0])[0:-1]) * 60 + int(str(second_split[0])[0:-1])
 
-            #print(f"{total_time} seconds")
             title: str = posts["items"][0]["snippet"]["title"]
             description: str = posts["items"][0]["snippet"]["description"]
+            print(f"Video title: {title}")
             title_and_desc = f"Title: {title}\nDescription: {description}"
             ai_response = dear_ai_is_this_brainrot(gemini_api_key, title_and_desc)
 
@@ -49,7 +47,9 @@ def dear_ai_is_this_brainrot(api_key: str, video_transcript: str) -> int:
 
     # Generate a response
     response = model.generate_content("You may only respond with \"entertainment\" or \"informative\". This is the title and description of a youtube video. Do you think this video is entertainment or informative?\n" + video_transcript)
-    print(response.text)
-    if response.text == "informative": return 1
-    if response.text == "entertainment": return 2
-    return 0
+    result = response.text.lower() # Occasionally the AI returns its responses uppercase and sometimes lowercase. This standardizes it.
+    print(f"AI Response: {result}")
+    if result == "informative": return 1
+    if result == "entertainment": return 2
+
+    return 0 # Error case

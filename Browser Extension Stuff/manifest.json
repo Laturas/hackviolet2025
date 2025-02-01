@@ -20,6 +20,13 @@
       "default_popup": "popup/popup.html"
     },
 
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["content_scripts/YT-Analytics.js"]
+      }
+    ],
+
     "web_accessible_resources": [
       "icons/temp-doodle.png"
     ]
