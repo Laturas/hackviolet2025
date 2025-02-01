@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "YT-analytics",
+    "version": "1.0",
+  
+    "description": "Tracks watched youtube videos and provides basic analytics",
+  
+    "icons": {
+      "48": "icons/temp-icon-48.png",
+      "96": "icons/temp-icon-96.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["YT-analytics.js"]
+      }
+    ]
+  }
+  
