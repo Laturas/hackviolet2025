@@ -20,7 +20,7 @@ app.add_middleware(
 @app.post("/")
 def add_item(request: dict):
     db = database.DatabaseMD()
-    result = requester.read_item("video_id")
+    result = requester.read_item(request["video_id"])
     db.send(result[0], result[1])
     return {"status": "ok"}
 
