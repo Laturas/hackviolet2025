@@ -1,0 +1,20 @@
+/* Theme Toggle event code I copied */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load saved theme preference
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️"; // Change to sun icon
+  }
+
+  // Toggle theme on button click
+  themeToggle.addEventListener("click", () => {
+    const isDarkMode = body.classList.toggle("dark-mode");
+    themeToggle.textContent = isDarkMode ? "☀️" : "🌙"; // Switch icon
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  });
+});
+  

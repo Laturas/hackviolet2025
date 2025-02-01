@@ -11,6 +11,112 @@ html, body {
   text-align: center;
 }
 
+/* Theme Toggle Button */
+#theme-toggle-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Extra interactables depending on the theme */
+
+/* Light Mode parts */
+
+#buttons {
+  margin-top: 20px;
+}
+
+button {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #e5f2f2;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #cff2f2;
+}
+
+button[type="reset"] {
+  background-color: #fbfbc9;
+}
+
+button[type="reset"]:hover {
+  background-color: #eaea9d;
+}
+
+.tag {
+  background-color: #e0f7fa;
+  color: #000;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: #80deea; /* Light blue on hover */
+}
+
+
+/* Dark Mode parts */
+
+.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+
+.dark-mode h1,
+.dark-mode p,
+.dark-mode .tag {
+  color: #ddd;
+}
+
+.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-mode button:hover {
+  background-color: #555;
+}
+
+.dark-mode #pie-chart-placeholder {
+  background-color: #333;
+  border-color: #555;
+}
+
+.dark-mode button[type="reset"] {
+  background-color: #665c00; /* Dark mustard yellow */
+  color: #fff;
+}
+
+.dark-mode button[type="reset"]:hover {
+  background-color: #8a8664;
+}
+
+.dark-mode .tag {
+  background-color: #444; /* Dark background */
+  color: #fff;
+}
+
+.dark-mode .tag:hover {
+  background-color: #666; /* Lighter dark background on hover */
+}
+
 /* Title Stuff */
 
 #title-section {
@@ -51,19 +157,6 @@ h1 {
   margin-top: 5px;
 }
 
-.tag {  /* Tag settings */
-  background-color: #e0f7fa;
-  padding: 5px 10px;
-  margin: 5px;
-  border-radius: 5px;
-  font-size: 1.1em;
-  cursor: pointer;
-}
-
-#tags .tag:hover {  /* Tag interact (IMPLEMENT) */
-  background-color: #80deea;
-}
-
  /* Pie Chart Section */
 
 #pie-chart {  /* Section Settings */
@@ -93,33 +186,6 @@ h1 {
 }
 
 /* Button Settings (IMPLEMENT) */
-
-#buttons {
-  margin-top: 20px;
-}
-
-button {
-  border: none;
-  width: 100%;
-  padding: 10px;
-  font-size: 1.2em;
-  cursor: pointer;
-  background-color: #e5f2f2;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #cff2f2;
-}
-
-button[type="reset"] {
-  background-color: #fbfbc9;
-}
-
-button[type="reset"]:hover {
-  background-color: #eaea9d;
-}
 
 .hidden {
   display: none;
