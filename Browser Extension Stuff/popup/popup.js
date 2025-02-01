@@ -1,96 +1,69 @@
 /**
- * CSS to hide everything on the page,
- * except for elements that have the "beastify-image" class.
- */
-const hidePage = `body > :not(.beastify-image) {
-    display: none;
-  }`;
-
-/**
 * Listen for clicks on the buttons, and send the appropriate message to
-* the content script in the page.
+* the content script in the page (YT-Analytics.js).
 */
 function listenForClicks() {
 document.addEventListener("click", (e) => {
-/**
-* Given the name of a beast, get the URL to the corresponding image.
-*/
-function beastNameToURL(beastName) {
-  switch (beastName) {
-    case "idkplaceholder":
-      return browser.runtime.getURL("icons/placeholder.jpg");
-    case "idkcat":
-      return browser.runtime.getURL("icons/temp-icon-48.png");
-    case "temp96":  
-      return browser.runtime.getURL("icons/temp-icon-96.png");
-    default:
-      console.log(`Unknown beastName: ${beastName}`);
-      return browser.runtime.getURL("icons/placeholder.jpg");
-  }
-}
 
-document.addEventListener("DOMContentLoaded", function() {
+
   // Set the image sources dynamically for the title and the pie chart
-  document.getElementById("title-image").src = browser.runtime.getURL("icons/youtube.png");
-  document.getElementById("pie-chart-image").src = browser.runtime.getURL("icons/placeholder.jpg");
-});
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("title-image").src = browser.runtime.getURL("icons/youtube.png");
+    document.getElementById("pie-chart-image").src = browser.runtime.getURL("icons/placeholder.jpg");
+  });
 
-/**
-* Insert the page-hiding CSS into the active tab,
-* then get the beast URL and
-* send a "beastify" message to the content script in the active tab.
-*/
-function beastify(tabs) {
-browser.tabs.insertCSS({ code: hidePage }).then(() => {
-const url = beastNameToURL(e.target.textContent);
-browser.tabs.sendMessage(tabs[0].id, {
-command: "beastify",
-beastURL: url,
-});
-});
-}
-
-/**
-* Remove the page-hiding CSS from the active tab,
-* send a "reset" message to the content script in the active tab.
-*/
-function reset(tabs) {
-  browser.tabs.removeCSS({ code: hidePage }).then(() => {
+  /**
+  * Send a message to the content script (YT-Analytics.js) to notify which button has been clicked
+  */
+  function clickButton(tabs) {
     browser.tabs.sendMessage(tabs[0].id, {
-      command: "reset",
+    command: "buttonClick",
+    buttonName: e.target.textContent, // The name of the button that has been clicked
     });
+  }
+
+  /**
+  * If error encountered, log the error to the console.
+  */
+  function reportError(error) {
+  console.error(`Could not beastify: ${error}`);
+  }
+
+  /**
+  * Get the active tab,
+  * Calls clickButton() if a button has been clicked
+  */
+  if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
+  // Ignore when click is not on a button within <div id="popup-content">.
+  return;
+  }
+    browser.tabs
+    .query({ active: true, currentWindow: true })
+    .then(clickButton)
+    .catch(reportError);
   });
 }
 
-/**
-* Just log the error to the console.
-*/
-function reportError(error) {
-console.error(`Could not beastify: ${error}`);
-}
+/* Theme Toggle event code I copied */
 
-/**
-* Get the active tab,
-* then call "beastify()" or "reset()" as appropriate.
-*/
-if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
-// Ignore when click is not on a button within <div id="popup-content">.
-return;
-}
-  if (e.target.type === "reset") {
-    browser.tabs
-    .query({ active: true, currentWindow: true })
-    .then(reset)
-    .catch(reportError);
-  } 
-  else {
-    browser.tabs
-    .query({ active: true, currentWindow: true })
-    .then(beastify)
-    .catch(reportError);
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load saved theme preference
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️"; // Change to sun icon
   }
+
+  // Toggle theme on button click
+  themeToggle.addEventListener("click", () => {
+    const isDarkMode = body.classList.toggle("dark-mode");
+    themeToggle.textContent = isDarkMode ? "☀️" : "🌙"; // Switch icon
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  });
 });
-}
+  
 
 /**
 * There was an error executing the script.
