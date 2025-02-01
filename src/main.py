@@ -1,4 +1,4 @@
-import database
+import database, requester
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -20,7 +20,11 @@ app.add_middleware(
 @app.post("/")
 def add_item(request: dict):
     db = database.DatabaseMD()
-    db.send(request)
+    genre = requester.read_item(request["video_id"])
+    if genre == 0:
+        return {"status" : "ok"}
+    if genre == 1:
+        db.send(request)
     return {"status": "ok"}
 
 @app.get("/")
