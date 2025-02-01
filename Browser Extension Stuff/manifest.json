@@ -12,20 +12,13 @@
       "96": "icons/temp-icon-96.png"
     },
 
-    "permissions": ["activeTab"],
+    "permissions": ["*://*.youtube.com/*"],
 
     "browser_action": {
       "default_icon": "icons/temp-icon-48.png",
       "default_title": "YT-analytics",
       "default_popup": "popup/popup.html"
     },
-  
-    "content_scripts": [
-      {
-        "matches": ["*://*.youtube.com/*"],
-        "js": ["YT-analytics.js"]
-      }
-    ],
 
     "web_accessible_resources": [
       "icons/temp-doodle.png"
