@@ -1,0 +1,34 @@
+{
+    "manifest_version": 2,
+    "name": "YT-analytics",
+    "version": "1.0",
+  
+    "description": "Tracks watched youtube videos and provides basic analytics",
+
+    "homepage_url": "https://github.com/Laturas/hackviolet2025",
+  
+    "icons": {
+      "48": "icons/temp-icon-48.png",
+      "96": "icons/temp-icon-96.png"
+    },
+
+    "permissions": ["activeTab"],
+
+    "browser_action": {
+      "default_icon": "icons/temp-icon-48.png",
+      "default_title": "YT-analytics",
+      "default_popup": "popup/popup.html"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js": ["YT-analytics.js"]
+      }
+    ],
+
+    "web_accessible_resources": [
+      "icons/temp-doodle.png"
+    ]
+  }
+  
