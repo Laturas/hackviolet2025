@@ -20,8 +20,13 @@ function get_times() {
       "Content-type": "application/json; charset=UTF-8"
     }
   }).then((response) => {
-    localStorage.setItem("infoTime", response["info"]);
-    localStorage.setItem("entertainmentTime", response["entertainment"]);
+
+    browser.tabs.sendMessage(tabs[0].id, {
+      command: "chartStats",
+      infoTime: response["info"],
+      entertainmentTime: response["entertainment"]
+    });
+
     console.log(response);
   });
 }
