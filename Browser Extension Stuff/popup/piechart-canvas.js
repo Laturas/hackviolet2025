@@ -24,8 +24,22 @@ function draw_split(ctx, angle_start, angle_end, color, draw_stroke) {
 
 contxt.clearRect(0, 0, canvas.width, canvas.height);
 background_circle(contxt);
-draw_split(contxt, Math.PI / 2, 2 * Math.PI, education_fill_color, false);
-draw_split(contxt, 0, Math.PI / 2, brainrot_fill_color, false);
+
+info_time = parseInt(localStorage.getItem("infoTime"));
+ent_time = parseInt(localStorage.getItem("entertainmentTime"));
+if (info_time === null) {
+	info_time = 1;
+}
+if (ent_time === null) {
+	ent_time = 1;
+}
+
+let total_time = info_time + ent_time;
+let info_fraction = info_time / total_time;
+let ent_fraction = ent_time / total_time;
+
+draw_split(contxt, Math.PI / 2 + (info_fraction * 2 * Math.Pi), (ent_fraction * 2 * Math.Pi), education_fill_color, false);
+draw_split(contxt, (ent_fraction * 2 * Math.Pi), Math.PI / 2 + (info_fraction * 2 * Math.Pi), brainrot_fill_color, false);
 
 
 
