@@ -20,9 +20,15 @@ def read_item(video_id: str) -> tuple[int, int]:
             dur_string = posts["items"][0]["contentDetails"]["duration"]
 
             minute_split = re.search("[0-9]*M", dur_string)
+            minutes = 0
+            if (minute_split != None):
+                minutes = int(str(minute_split[0])[0:-1])
             second_split = re.search("[0-9]*S", dur_string)
+            seconds = 0
+            if (second_split != None):
+                seconds = int(str(second_split[0])[0:-1])
 
-            total_time = int(str(minute_split[0])[0:-1]) * 60 + int(str(second_split[0])[0:-1])
+            total_time = minutes * 60 + seconds
 
             title: str = posts["items"][0]["snippet"]["title"]
             description: str = posts["items"][0]["snippet"]["description"]
