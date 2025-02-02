@@ -74,12 +74,18 @@ button[type="reset"]:hover {
   background-color: #eaea9d;
 }
 
+div {
+  padding: 0;
+  margin: 0;
+}
+
 ul {
   list-style-type: none;
   display: flex;
   flex-flow: column;
   margin-left: 0;
   padding: 0;
+  margin: 0;
   align-items: left;
   line-height: 0;
   > li {
@@ -175,6 +181,8 @@ ul {
 }
 
 #title-section {
+  padding-top: 5px;
+  margin-top: 5px;
   margin-bottom: -10px;
 }
 

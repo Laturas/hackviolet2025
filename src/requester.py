@@ -21,12 +21,11 @@ def read_item(video_id: str) -> tuple[int, int]:
 
             minute_split = re.search("[0-9]*M", dur_string)
             minutes = 0
-            if (minute_split != None):
-                minutes = int(str(minute_split[0])[0:-1])
+            if (minute_split != None): minutes = int(str(minute_split[0])[0:-1])
+
             second_split = re.search("[0-9]*S", dur_string)
             seconds = 0
-            if (second_split != None):
-                seconds = int(str(second_split[0])[0:-1])
+            if (second_split != None): seconds = int(str(second_split[0])[0:-1])
 
             total_time = minutes * 60 + seconds
 
