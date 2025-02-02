@@ -19,6 +19,10 @@ def read_item(video_id: str) -> tuple[int, int]:
             posts = response.json()
             dur_string = posts["items"][0]["contentDetails"]["duration"]
 
+            hour_split = re.search("[0-9]*H", dur_string)
+            hours = 0
+            if (hour_split != None): hours = int(str(hour_split[0])[0:-1])
+
             minute_split = re.search("[0-9]*M", dur_string)
             minutes = 0
             if (minute_split != None): minutes = int(str(minute_split[0])[0:-1])
@@ -27,7 +31,7 @@ def read_item(video_id: str) -> tuple[int, int]:
             seconds = 0
             if (second_split != None): seconds = int(str(second_split[0])[0:-1])
 
-            total_time = minutes * 60 + seconds
+            total_time = hours*3600 + minutes*60 + seconds
 
             title: str = posts["items"][0]["snippet"]["title"]
             description: str = posts["items"][0]["snippet"]["description"]
