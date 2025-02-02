@@ -19,16 +19,12 @@ function get_times() {
   
 		info_time = parseInt(localStorage.getItem("infoTime"));
 		ent_time = parseInt(localStorage.getItem("entertainmentTime"));
-		console.log(info_time);
-		console.log(ent_time);
   
 		chrome.tabs.sendMessage(tabs[0].id, {
 		  command: "chartStats",
 		  infoTime: response["info"],
 		  entertainmentTime: response["entertainment"]
 		});
-  
-		console.log(response);
 	  });
 	});
 }
@@ -56,7 +52,7 @@ background_circle(contxt);
 
 info_time = parseInt(localStorage.getItem("infoTime"));
 ent_time = parseInt(localStorage.getItem("entertainmentTime"));
-contxt.fillStyle = "rgb(255,50,50)";
+//contxt.fillStyle = "rgb(255,50,50)";
 
 if (info_time != info_time) {
 	info_time = 1;
@@ -72,8 +68,8 @@ let ent_fraction = ent_time / total_time;
 // 0 -> 2pi * fraction
 draw_split(contxt, 0, (info_fraction * 2 * Math.PI), education_fill_color, false);
 draw_split(contxt, (info_fraction * 2 * Math.PI), 2*Math.PI, brainrot_fill_color, false);
-contxt.fillText(info_time, 100, 100);
-contxt.fillText(ent_time, 100, 50);
+//contxt.fillText(info_time, 100, 100);
+//contxt.fillText(ent_time, 100, 50);
 
 
 
