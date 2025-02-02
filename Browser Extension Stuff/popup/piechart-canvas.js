@@ -5,17 +5,34 @@ const education_fill_color = "rgb(96, 154, 255)"
 const node_fill_color = "rgb(100,100,100)"
 const edge_color = "rgb(0,0,0)"
 
-/**
-	 * Listen for messages from the content script
-	 * (Used to recieve chart statistics)
-	 */
-chrome.runtime.onMessage.addListener((message) => {
-	if (message.command === "chartStats") {
-
-		console.log(`Info Time: ${message.infoTime}`);
-		console.log(`Entertainment Time: ${message.entertainmentTime}`);
-	}
-  });
+function get_times() {
+	fetch("http://127.0.0.1:8000/", {
+	  method: "GET",
+	  headers: {
+		"Content-type": "application/json; charset=UTF-8"
+	  }
+	}).then((response) => {
+	  response.json().then((json_response) => {
+		localStorage.setItem("infoTime", json_response.info);
+		localStorage.setItem("entertainmentTime", json_response.entertain);
+		console.log(json_response);
+  
+		info_time = parseInt(localStorage.getItem("infoTime"));
+		ent_time = parseInt(localStorage.getItem("entertainmentTime"));
+		console.log(info_time);
+		console.log(ent_time);
+  
+		chrome.tabs.sendMessage(tabs[0].id, {
+		  command: "chartStats",
+		  infoTime: response["info"],
+		  entertainmentTime: response["entertainment"]
+		});
+  
+		console.log(response);
+	  });
+	});
+}
+get_times()
 
 function background_circle(ctx) {
 	ctx.beginPath();
@@ -51,12 +68,12 @@ if (ent_time != ent_time) {
 let total_time = info_time + ent_time;
 let info_fraction = info_time / total_time;
 let ent_fraction = ent_time / total_time;
-contxt.fillText(info_time, 100, 100);
-contxt.fillText(ent_time, 100, 50);
 
 // 0 -> 2pi * fraction
 draw_split(contxt, 0, (info_fraction * 2 * Math.PI), education_fill_color, false);
 draw_split(contxt, (info_fraction * 2 * Math.PI), 2*Math.PI, brainrot_fill_color, false);
+contxt.fillText(info_time, 100, 100);
+contxt.fillText(ent_time, 100, 50);
 
 
 
