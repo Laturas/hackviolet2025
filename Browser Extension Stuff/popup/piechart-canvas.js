@@ -14,11 +14,9 @@ chrome.runtime.onMessage.addListener((message) => {
 
 		console.log(`Info Time: ${message.infoTime}`);
 		console.log(`Entertainment Time: ${message.entertainmentTime}`);
-
-		localStorage.setItem("infoTime", message.infoTime);
-		localStorage.setItem("entertainmentTime", message.entertainmentTime);
 	}
   });
+
 function background_circle(ctx) {
 	ctx.beginPath();
 	ctx.moveTo(100,100);
