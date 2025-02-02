@@ -51,7 +51,7 @@ draw_split(contxt, (info_fraction * 2 * Math.PI), 2*Math.PI, brainrot_fill_color
      * Listen for messages from the content script
      * (Used to recieve chart statistics)
      */
-browser.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message) => {
 	if (message.command === "chartStats") {
 
 		console.log(`Info Time: ${message.infoTime}`);
