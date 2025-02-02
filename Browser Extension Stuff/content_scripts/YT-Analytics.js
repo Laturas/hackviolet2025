@@ -21,8 +21,8 @@ function get_times() {
     }
   }).then((response) => {
 
-    localStorage.setItem("infoTime", message.infoTime);
-		localStorage.setItem("entertainmentTime", message.entertainmentTime);
+    localStorage.setItem("infoTime", response.infoTime);
+		localStorage.setItem("entertainmentTime", response.entertainmentTime);
 
     info_time = parseInt(localStorage.getItem("infoTime"));
     ent_time = parseInt(localStorage.getItem("entertainmentTime"));
