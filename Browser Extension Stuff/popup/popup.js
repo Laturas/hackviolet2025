@@ -65,20 +65,41 @@ function listenForClicks() {
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
+  const titleImage = document.getElementById("title-image");
 
-  // Load saved theme preference
-  if (localStorage.getItem("theme") === "dark") {
+  // Get saved theme preference
+  const isDarkMode = localStorage.getItem("theme") === "dark";
+
+  // Apply correct theme before anything is shown
+  if (isDarkMode) {
     body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️"; // Change to sun icon
+    themeToggle.textContent = "☀️";
+    titleImage.src = chrome.runtime.getURL("icons/yak-dark-run.png");
+  } else {
+    themeToggle.textContent = "🌙";
+    titleImage.src = chrome.runtime.getURL("icons/yak-light-run.png");
   }
 
-  
+  function updateTitleImage(isDarkMode) {
+    titleImage.style.opacity = "0"; // Start fade-out effect
 
-  // Toggle theme on button click
+    setTimeout(() => {
+      titleImage.src = isDarkMode
+        ? chrome.runtime.getURL("icons/yak-dark-run.png")
+        : chrome.runtime.getURL("icons/yak-light-run.png");
+    }, 500); // Change image after 0.5s
+
+    setTimeout(() => {
+      titleImage.style.opacity = "1"; // Fade in smoothly
+    }, 550);
+  }
+
+  // Theme toggle logic
   themeToggle.addEventListener("click", () => {
     const isDarkMode = body.classList.toggle("dark-mode");
-    themeToggle.textContent = isDarkMode ? "☀️" : "🌙"; // Switch icon
+    themeToggle.textContent = isDarkMode ? "☀️" : "🌙";
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    updateTitleImage(isDarkMode);
   });
 });
   
