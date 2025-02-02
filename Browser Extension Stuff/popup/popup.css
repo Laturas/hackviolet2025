@@ -4,10 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s;
+  opacity: 1;
 }
 
 #popup-content {
-  padding: 15px;
+  padding-top: 15px;
   text-align: center;
 }
 
@@ -31,17 +33,17 @@ html, body {
 
 #buttons {
   margin-top: 20px;
-}
-
-button {
-  border: none;
-  width: 100%;
-  padding: 10px;
-  font-size: 1.2em;
-  cursor: pointer;
-  background-color: #e5f2f2;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  > button {
+    border: none;
+    width: 80%;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #e5f2f2;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 1s, color 1s;
+  }
 }
 
 button:hover {
@@ -64,6 +66,7 @@ button[type="reset"]:hover {
   border-radius: 5px;
   font-size: 1.1em;
   cursor: pointer;
+  transition: background-color 1s, color 1s;
 }
 
 .tag:hover {
@@ -76,12 +79,14 @@ button[type="reset"]:hover {
 .dark-mode {
   background-color: #222;
   color: #eee;
+  transition: background-color 1.2s ease .2s, color 1.2s ease .2s;
 }
 
 .dark-mode h1,
 .dark-mode p,
 .dark-mode .tag {
   color: #ddd;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s
 }
 
 .dark-mode button {
@@ -133,6 +138,7 @@ h1 {
   font-size: 1.6em;
   margin-bottom: 15px;
   color: #333;
+  transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s
 }
 
 /* Total Time Watched Section */
