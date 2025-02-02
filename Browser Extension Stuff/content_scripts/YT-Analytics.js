@@ -1,7 +1,3 @@
-
-
-// runs when popup is loaded
-
 (() => {  
 
     /**
@@ -27,13 +23,16 @@
     const videoID = pattern.exec(url);
     console.log(videoID);
 
-    //                              REPLACE WITH URL
-    // Send video ID to database    vvvvvvvvvvvvvvvv 
-    const response = fetch("https://example.org/post", {
+    fetch("http://127.0.0.1:8000/", {
       method: "POST",
-      body: JSON.stringify({ video_id: videoID }),
-      // headers: myHeaders,
+      body: JSON.stringify({
+        video_id: videoID
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
     });
+
 
 
 
