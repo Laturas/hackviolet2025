@@ -1,7 +1,7 @@
 const canvas = document.getElementById("main-canvas");
 const contxt = canvas.getContext("2d");
-const brainrot_fill_color = "rgb(136, 32, 32)"
-const education_fill_color = "rgb(76, 198, 76)"
+const brainrot_fill_color = "rgb(160, 0, 0)"
+const education_fill_color = "rgb(96, 154, 255)"
 const node_fill_color = "rgb(100,100,100)"
 const edge_color = "rgb(0,0,0)"
 
