@@ -1,3 +1,8 @@
+
+// Whether or not analytics tracking is enabled or not
+const trackingEnabled = true;
+
+
 /**
 * Listen for clicks on the buttons, and send the appropriate message to
 * the content script in the page (YT-Analytics.js).
@@ -15,10 +20,10 @@ document.addEventListener("click", (e) => {
   /**
   * Send a message to the content script (YT-Analytics.js) to notify which button has been clicked
   */
-  function clickButton(tabs) {
+  function enableOrDisable(tabs) {
     browser.tabs.sendMessage(tabs[0].id, {
-    command: "buttonClick",
-    buttonName: e.target.textContent, // The name of the button that has been clicked
+    command: "enableOrDisable",
+    enabledOrDisabled: trackingEnabled, // Whether or not the tracking is enabled or disabled
     });
   }
 
@@ -39,7 +44,7 @@ document.addEventListener("click", (e) => {
   }
     browser.tabs
     .query({ active: true, currentWindow: true })
-    .then(clickButton)
+    .then(enableOrDisable)
     .catch(reportError);
   });
 }
