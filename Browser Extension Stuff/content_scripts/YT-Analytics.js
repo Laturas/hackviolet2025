@@ -24,6 +24,11 @@ function get_times() {
     localStorage.setItem("infoTime", message.infoTime);
 		localStorage.setItem("entertainmentTime", message.entertainmentTime);
 
+    info_time = parseInt(localStorage.getItem("infoTime"));
+    ent_time = parseInt(localStorage.getItem("entertainmentTime"));
+    console.log(info_time);
+    console.log(ent_time);
+
     chrome.tabs.sendMessage(tabs[0].id, {
       command: "chartStats",
       infoTime: response["info"],

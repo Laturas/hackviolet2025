@@ -51,6 +51,8 @@ if (ent_time != ent_time) {
 let total_time = info_time + ent_time;
 let info_fraction = info_time / total_time;
 let ent_fraction = ent_time / total_time;
+contxt.fillText(info_time, 100, 100);
+contxt.fillText(ent_time, 100, 50);
 
 // 0 -> 2pi * fraction
 draw_split(contxt, 0, (info_fraction * 2 * Math.PI), education_fill_color, false);
