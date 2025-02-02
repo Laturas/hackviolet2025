@@ -13,7 +13,15 @@ function toggleTracking() {
     localStorage.setItem("trackingDisabled", "true");
   }
 }
-
+function get_times() {
+  fetch("http://127.0.0.1:8000/", {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  }).then((response) => console.log(response));
+  return {"info": response["info"], "entertainment": response["entertainment"]}
+}
 
 (() => {  
 
@@ -55,6 +63,8 @@ function toggleTracking() {
           "Content-type": "application/json; charset=UTF-8"
         }
       });
+
+      console.log(get_times())
 
     }
 
