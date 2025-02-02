@@ -15,8 +15,8 @@
   "permissions": ["*://*.youtube.com/*"],
 
   "browser_action": {
-    "default_icon": "yak.png",
-    "default_title": "Yak-Analytics",
+    "default_icon": "icons/yak.png",
+    "default_title": "icons/Yak-Analytics",
     "default_popup": "popup/popup.html"
   },
 
@@ -28,6 +28,8 @@
   ],
 
   "web_accessible_resources": [
-    "icons/temp-doodle.png"
+    "icons/temp-doodle.png",
+    "icons/yak.png",
+    "icons/temp-icon-96.png"
   ]
 }
