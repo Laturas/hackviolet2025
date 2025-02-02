@@ -20,24 +20,24 @@ function get_times() {
       "Content-type": "application/json; charset=UTF-8"
     }
   }).then((response) => {
-    let json_response; response.json().then((result) => {json_response = result})
-    
-    localStorage.setItem("infoTime", json_response.info);
-		localStorage.setItem("entertainmentTime", json_response.entertain);
-    console.log(json_response);
+    let json_response = response.json().then((json_response) => {
+      localStorage.setItem("infoTime", json_response.info);
+      localStorage.setItem("entertainmentTime", json_response.entertain);
+      console.log(json_response);
 
-    info_time = parseInt(localStorage.getItem("infoTime"));
-    ent_time = parseInt(localStorage.getItem("entertainmentTime"));
-    console.log(info_time);
-    console.log(ent_time);
+      info_time = parseInt(localStorage.getItem("infoTime"));
+      ent_time = parseInt(localStorage.getItem("entertainmentTime"));
+      console.log(info_time);
+      console.log(ent_time);
 
-    chrome.tabs.sendMessage(tabs[0].id, {
-      command: "chartStats",
-      infoTime: response["info"],
-      entertainmentTime: response["entertainment"]
+      chrome.tabs.sendMessage(tabs[0].id, {
+        command: "chartStats",
+        infoTime: response["info"],
+        entertainmentTime: response["entertainment"]
+      });
+
+      console.log(response);
     });
-
-    console.log(response);
   });
 }
 
