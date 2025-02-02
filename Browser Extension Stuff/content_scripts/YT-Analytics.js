@@ -1,5 +1,7 @@
 
 
+
+
 /**
  *  Toggles whether tracking is enabled or disabled
  */
@@ -24,7 +26,8 @@ function toggleTracking() {
       return;
     }
     window.hasRun = true;
-
+    
+  
 
 
 
@@ -39,7 +42,7 @@ function toggleTracking() {
       const url = window.location.href;
       
       // Extract video ID
-      const pattern = /(?<=watch\?v=)[a-zA-Z0-9]+/i
+      const pattern = /(?<=watch\?v=)[a-zA-Z0-9_-]+/i
       const videoID = pattern.exec(url);
       console.log(videoID);
 
