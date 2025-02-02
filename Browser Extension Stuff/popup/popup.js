@@ -1,8 +1,4 @@
 
-// Whether or not analytics tracking is enabled or not
-const trackingEnabled = true;
-
-
 /**
 * Listen for clicks on the buttons, and send the appropriate message to
 * the content script in the page (YT-Analytics.js).
@@ -18,20 +14,35 @@ function listenForClicks() {
     });
 
     /**
-    * Send a message to the content script (YT-Analytics.js) to notify which button has been clicked
+    *  Enable / Disable tracking 
     */
     function enableOrDisable(tabs) {
+
+      // Send message to content script (YT-Analytics.js) notifying of change
       browser.tabs.sendMessage(tabs[0].id, {
         command: "enableOrDisable",
-        enabledOrDisabled: trackingEnabled, // Whether or not the tracking is enabled or disabled
       });
+
+
+      // Visually toggle tracking button
+      const trackingToggle = document.getElementById("enable-disable-button");
+
+      if (localStorage.getItem("trackingDisabled") === "false") {
+        localStorage.setItem("trackingDisabled", "true")
+        trackingToggle.textContent = "Tracking Enabled";
+      }
+      else {
+        localStorage.setItem("trackingDisabled", "false")
+        trackingToggle.textContent = "Tracking Disabled";
+      }
+
     }
 
     /**
     * If error encountered, log the error to the console.
     */
     function reportError(error) {
-      console.error(`Could not beastify: ${error}`);
+      console.error(`Yak Analytics encountered an error: ${error}`);
     }
 
     /**
@@ -54,31 +65,20 @@ function listenForClicks() {
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
-  const titleImage = document.getElementById("title-image");
 
-  function updateTitleImage(isDarkMode) {
-    titleImage.style.opacity = "0"; // Start fade-out effect
-
-    setTimeout(() => {
-      titleImage.src = isDarkMode
-        ? browser.runtime.getURL("icons/yak-dark-run.png") // Dark mode image
-        : browser.runtime.getURL("icons/yak-light-run.png"); // Light mode image
-      titleImage.style.opacity = "1"; // Fade-in effect
-    }, 500); // Wait 0.5s before changing the image
-  }
-
-  const isDarkMode = localStorage.getItem("theme") === "dark";
-  if (isDarkMode) {
+  // Load saved theme preference
+  if (localStorage.getItem("theme") === "dark") {
     body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️";
+    themeToggle.textContent = "☀️"; // Change to sun icon
   }
-  updateTitleImage(isDarkMode);
 
+  
+
+  // Toggle theme on button click
   themeToggle.addEventListener("click", () => {
     const isDarkMode = body.classList.toggle("dark-mode");
-    themeToggle.textContent = isDarkMode ? "☀️" : "🌙";
+    themeToggle.textContent = isDarkMode ? "☀️" : "🌙"; // Switch icon
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-    updateTitleImage(isDarkMode);
   });
 });
   
