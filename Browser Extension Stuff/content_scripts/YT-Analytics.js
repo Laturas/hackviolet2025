@@ -20,7 +20,8 @@ function get_times() {
       "Content-type": "application/json; charset=UTF-8"
     }
   }).then((response) => {
-    let json_response = JSON.parse(response)
+    let json_response; response.json().then((result) => {json_response = result})
+    
     localStorage.setItem("infoTime", json_response.info);
 		localStorage.setItem("entertainmentTime", json_response.entertain);
     console.log(json_response);
