@@ -8,40 +8,40 @@ const trackingEnabled = true;
 * the content script in the page (YT-Analytics.js).
 */
 function listenForClicks() {
-document.addEventListener("click", (e) => {
+  document.addEventListener("click", (e) => {
 
 
-  // Set the image sources dynamically for the title and the pie chart
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("title-image").src = browser.runtime.getURL("icons/youtube.png");
-    document.getElementById("pie-chart-image").src = browser.runtime.getURL("icons/placeholder.jpg");
-  });
-
-  /**
-  * Send a message to the content script (YT-Analytics.js) to notify which button has been clicked
-  */
-  function enableOrDisable(tabs) {
-    browser.tabs.sendMessage(tabs[0].id, {
-    command: "enableOrDisable",
-    enabledOrDisabled: trackingEnabled, // Whether or not the tracking is enabled or disabled
+    // Set the image sources dynamically for the title and the pie chart
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("title-image").src = browser.runtime.getURL("icons/youtube.png");
+      document.getElementById("pie-chart-image").src = browser.runtime.getURL("icons/placeholder.jpg");
     });
-  }
 
-  /**
-  * If error encountered, log the error to the console.
-  */
-  function reportError(error) {
-  console.error(`Could not beastify: ${error}`);
-  }
+    /**
+    * Send a message to the content script (YT-Analytics.js) to notify which button has been clicked
+    */
+    function enableOrDisable(tabs) {
+      browser.tabs.sendMessage(tabs[0].id, {
+        command: "enableOrDisable",
+        enabledOrDisabled: trackingEnabled, // Whether or not the tracking is enabled or disabled
+      });
+    }
 
-  /**
-  * Get the active tab,
-  * Calls clickButton() if a button has been clicked
-  */
-  if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
-  // Ignore when click is not on a button within <div id="popup-content">.
-  return;
-  }
+    /**
+    * If error encountered, log the error to the console.
+    */
+    function reportError(error) {
+      console.error(`Could not beastify: ${error}`);
+    }
+
+    /**
+    * Get the active tab,
+    * Calls clickButton() if a button has been clicked
+    */
+    if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
+      // Ignore when click is not on a button within <div id="popup-content">.
+      return;
+    }
     browser.tabs
     .query({ active: true, currentWindow: true })
     .then(enableOrDisable)
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
 * Display the popup's error message, and hide the normal UI.
 */
 function reportExecuteScriptError(error) {
-document.querySelector("#popup-content").classList.add("hidden");
-document.querySelector("#error-content").classList.remove("hidden");
-console.error(`Failed to execute beastify content script: ${error.message}`);
+  document.querySelector("#popup-content").classList.add("hidden");
+  document.querySelector("#error-content").classList.remove("hidden");
+  console.error(`Failed to execute beastify content script: ${error.message}`);
 }
 
 /**

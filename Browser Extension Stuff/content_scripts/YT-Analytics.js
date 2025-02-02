@@ -21,15 +21,21 @@
 
     // Get the url of the current tab
     const url = window.location.href;
-
-    const pattern = /(?<=watch\?v=)[a-zA-Z0-9]+/i
-
+    
     // Extract video ID
+    const pattern = /(?<=watch\?v=)[a-zA-Z0-9]+/i
     const videoID = pattern.exec(url);
-
     console.log(videoID);
 
-    
+    //                              REPLACE WITH URL
+    // Send video ID to database    vvvvvvvvvvvvvvvv 
+    const response = fetch("https://example.org/post", {
+      method: "POST",
+      body: JSON.stringify({ video_id: videoID }),
+      // headers: myHeaders,
+    });
+
+
 
   
 
