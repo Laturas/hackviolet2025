@@ -9,7 +9,7 @@ html, body {
 }
 
 #popup-content {
-  padding-top: 15px;
+  padding-top: 0px;
   text-align: center;
 }
 
@@ -21,15 +21,20 @@ html, body {
 /* Theme Toggle Button */
 #theme-toggle-container {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 10px;
 }
 
 #theme-toggle {
   background: none;
   border: none;
-  font-size: 1.5em;
   cursor: pointer;
+  position: relative;
+  font-size: 1.5em;
+  padding: 5px;
+  font-size: 18px;
+  top: -10px; 
+  right: 10px;
 }
 
 /* Extra interactables depending on the theme */
@@ -160,21 +165,42 @@ ul {
 
 /* Title Stuff */
 
+#title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0px; /* Reduce space below title */
+  top: 0px;
+  gap: 0px;
+}
+
 #title-section {
-  margin-bottom: 15px;
+  margin-bottom: -10px;
+}
+
+#title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0px; /* Reduce space below title */
 }
 
 #title-image {
-  width: 40px;
-  height: 40px; 
-  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  transition: opacity 1.2s ease-in-out;
 }
 
 h1 {
   font-size: 1.6em;
+  margin: 0x 0;
   padding-top: 0;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 0;
+  padding: 0;
   color: #333;
   transition: opacity 0.5s ease 0.2s, background-color 1.2s ease 0.2s, color 1.2s ease 0.2s
 }

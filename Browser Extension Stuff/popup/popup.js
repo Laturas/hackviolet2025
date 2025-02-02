@@ -54,20 +54,31 @@ function listenForClicks() {
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
+  const titleImage = document.getElementById("title-image");
 
-  // Load saved theme preference
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
-    themeToggle.textContent = "☀️"; // Change to sun icon
+  function updateTitleImage(isDarkMode) {
+    titleImage.style.opacity = "0"; // Start fade-out effect
+
+    setTimeout(() => {
+      titleImage.src = isDarkMode
+        ? browser.runtime.getURL("icons/yak-dark-run.png") // Dark mode image
+        : browser.runtime.getURL("icons/yak-light-run.png"); // Light mode image
+      titleImage.style.opacity = "1"; // Fade-in effect
+    }, 500); // Wait 0.5s before changing the image
   }
 
-  
+  const isDarkMode = localStorage.getItem("theme") === "dark";
+  if (isDarkMode) {
+    body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️";
+  }
+  updateTitleImage(isDarkMode);
 
-  // Toggle theme on button click
   themeToggle.addEventListener("click", () => {
     const isDarkMode = body.classList.toggle("dark-mode");
-    themeToggle.textContent = isDarkMode ? "☀️" : "🌙"; // Switch icon
+    themeToggle.textContent = isDarkMode ? "☀️" : "🌙";
     localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    updateTitleImage(isDarkMode);
   });
 });
   
