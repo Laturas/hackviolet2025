@@ -1,1 +1,2 @@
-# I needed to put this here to initialize the git repository
+# Yakalytics
+Compare watchtimes with Yakalytics and track how you spend your time on YouTube.
