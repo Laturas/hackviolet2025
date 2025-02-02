@@ -19,7 +19,7 @@ function listenForClicks() {
     function enableOrDisable(tabs) {
 
       // Send message to content script (YT-Analytics.js) notifying of change
-      browser.tabs.sendMessage(tabs[0].id, {
+      chrome.tabs.sendMessage(tabs[0].id, {
         command: "enableOrDisable",
       });
 

@@ -27,10 +27,12 @@ background_circle(contxt);
 
 info_time = parseInt(localStorage.getItem("infoTime"));
 ent_time = parseInt(localStorage.getItem("entertainmentTime"));
-if (info_time === null) {
+contxt.fillStyle = "rgb(255,50,50)";
+
+if (info_time != info_time) {
 	info_time = 1;
 }
-if (ent_time === null) {
+if (ent_time != ent_time) {
 	ent_time = 1;
 }
 
@@ -38,8 +40,10 @@ let total_time = info_time + ent_time;
 let info_fraction = info_time / total_time;
 let ent_fraction = ent_time / total_time;
 
-draw_split(contxt, Math.PI / 2 + (info_fraction * 2 * Math.Pi), (ent_fraction * 2 * Math.Pi), education_fill_color, false);
-draw_split(contxt, (ent_fraction * 2 * Math.Pi), Math.PI / 2 + (info_fraction * 2 * Math.Pi), brainrot_fill_color, false);
+// 0 -> 2pi * fraction
+draw_split(contxt, 0, (info_fraction * 2 * Math.PI), education_fill_color, false);
+draw_split(contxt, (info_fraction * 2 * Math.PI), 2*Math.PI, brainrot_fill_color, false);
+
 
 
 

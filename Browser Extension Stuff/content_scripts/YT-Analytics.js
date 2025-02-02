@@ -21,7 +21,7 @@ function get_times() {
     }
   }).then((response) => {
 
-    browser.tabs.sendMessage(tabs[0].id, {
+    chrome.tabs.sendMessage(tabs[0].id, {
       command: "chartStats",
       infoTime: response["info"],
       entertainmentTime: response["entertainment"]
@@ -80,7 +80,7 @@ function get_times() {
      * Listen for messages from the background script
      * (Used to enable and disable tracking)
      */
-    browser.runtime.onMessage.addListener((message) => {
+    chrome.runtime.onMessage.addListener((message) => {
       if (message.command === "enableOrDisable") {
         toggleTracking();
         console.log(`Tracking Disabled ${localStorage.getItem("trackingDisabled")}`);
