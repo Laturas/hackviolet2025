@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle.textContent = "☀️"; // Change to sun icon
   }
 
+  
+
   // Toggle theme on button click
   themeToggle.addEventListener("click", () => {
     const isDarkMode = body.classList.toggle("dark-mode");

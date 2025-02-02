@@ -20,18 +20,24 @@
 
       <!-- Time Watched Section -->
       <div id="time-watched">
-        <p> <strong>Time Watched:</strong> <span id="time"></span> </p>
+        <p> <strong>Time Watched:</strong> <span id="time">5 hours</span> </p>
       </div>
 
       <!-- Most Watched Section -->
       <div id="most-watched">
-        <p><strong>Most Watched:</strong></p>
+        <p><strong>Breakdown:</strong></p>
 
         <!-- Tags of Watched Content -->
-        <div id="tags">
-          <span class="tag">Entertainment</span>
-          <span class="tag">Education</span>
-        </div>
+         <ul>
+          <li>
+            <div style="background-color: green;"></div>
+            <p>Education</p>
+          </li>
+          <li>
+            <div style="background-color: red;"></div>
+            <p>Entertainment</p>
+          </li>
+         </ul>
 
       </div>
 
@@ -39,22 +45,24 @@
       <div id="pie-chart">
         <p><strong>Watch Category Distribution:</strong></p>
         <!-- Pie Chart Canvas (IMPLEMENT) -->
-        <canvas id="pie-chart-canvas" width="200" height="200"></canvas>
+        <canvas id="main-canvas" width="200" height="200"></canvas>
       </div>
 
       <!-- Buttons -->
       <div id="buttons">
-        <button> Enable/Disable </button>
+        <button id="enable-disable-button"> Enable/Disable </button>
       </div>
     </div>
 
     <!-- End -->
+    <script src="piechart-canvas.js"></script>
     <script src="popup.js"></script>
 
     <div id="error-content" class="hidden">
       <p>Can't provide analytics for this web page.</p>
       <p>Make sure you are on youtube.com</p>
     </div>
+
 
   </body>
 </html>
