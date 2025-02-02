@@ -23,15 +23,15 @@
     const videoID = pattern.exec(url);
     console.log(videoID);
 
-    fetch("http://127.0.0.1:8000/", {
+
+    const request = new Request("http://127.0.0.1:8000/", {
       method: "POST",
       body: JSON.stringify({
-        video_id: videoID
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+            video_id: videoID
+          }),
     });
+
+    console.log(request)
 
 
 
