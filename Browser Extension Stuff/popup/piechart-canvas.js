@@ -26,4 +26,3 @@ contxt.clearRect(0, 0, canvas.width, canvas.height);
 background_circle(contxt);
 draw_split(contxt, Math.PI / 2, 2 * Math.PI, education_fill_color, false);
 draw_split(contxt, 0, Math.PI / 2, brainrot_fill_color, false);
-print(get_times())

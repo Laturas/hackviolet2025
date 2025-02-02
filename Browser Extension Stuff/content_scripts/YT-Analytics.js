@@ -19,8 +19,11 @@ function get_times() {
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     }
-  }).then((response) => console.log(response));
-  return {"info": response["info"], "entertainment": response["entertainment"]}
+  }).then((response) => {
+    localStorage.setItem("infoTime", response["info"]);
+    localStorage.setItem("entertainmentTime", response["entertainment"]);
+    console.log(response);
+  });
 }
 
 (() => {  
@@ -63,8 +66,7 @@ function get_times() {
           "Content-type": "application/json; charset=UTF-8"
         }
       });
-
-      console.log(get_times())
+      get_times();
 
     }
 
