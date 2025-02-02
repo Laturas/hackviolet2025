@@ -5,6 +5,20 @@ const education_fill_color = "rgb(96, 154, 255)"
 const node_fill_color = "rgb(100,100,100)"
 const edge_color = "rgb(0,0,0)"
 
+/**
+	 * Listen for messages from the content script
+	 * (Used to recieve chart statistics)
+	 */
+chrome.runtime.onMessage.addListener((message) => {
+	if (message.command === "chartStats") {
+
+		console.log(`Info Time: ${message.infoTime}`);
+		console.log(`Entertainment Time: ${message.entertainmentTime}`);
+
+		localStorage.setItem("infoTime", message.infoTime);
+		localStorage.setItem("entertainmentTime", message.entertainmentTime);
+	}
+  });
 function background_circle(ctx) {
 	ctx.beginPath();
 	ctx.moveTo(100,100);
@@ -46,18 +60,3 @@ draw_split(contxt, (info_fraction * 2 * Math.PI), 2*Math.PI, brainrot_fill_color
 
 
 
-
-/**
-     * Listen for messages from the content script
-     * (Used to recieve chart statistics)
-     */
-chrome.runtime.onMessage.addListener((message) => {
-	if (message.command === "chartStats") {
-
-		console.log(`Info Time: ${message.infoTime}`);
-		console.log(`Entertainment Time: ${message.entertainmentTime}`);
-
-		localStorage.setItem("infoTime", message.infoTime);
-		localStorage.setItem("entertainmentTime", message.entertainmentTime);
-	}
-  });
